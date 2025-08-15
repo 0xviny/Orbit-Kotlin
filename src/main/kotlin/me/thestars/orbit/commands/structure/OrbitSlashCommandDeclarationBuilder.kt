@@ -14,7 +14,7 @@ class OrbitSlashCommandDeclarationBuilder(
     val name: String,
     val description: String,
     val isPrivate: Boolean,
-    val executor: OrbitSlashCommandExecutor? = null
+    var executor: OrbitSlashCommandExecutor? = null
 ) {
     val subCommands = mutableListOf<OrbitSlashCommandDeclarationBuilder>()
     val subCommandGroups = mutableListOf<OrbitSlashCommandGroupBuilder>()
