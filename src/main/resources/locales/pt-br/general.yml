@@ -1,0 +1,26 @@
+commands:
+  command:
+    orbit:
+      description: "Comandos relacionado ao Orbit!"
+      ping:
+        description: "[Comum] Verifique a latência do bot com a API do Discord!"
+      help:
+        name: "ajuda"
+        description: "[Comum] Veja minha lista de comandos e alguns links úteis sobre mim!"
+
+    help:
+      embedTitle: "Painel de Ajuda!"
+      embedDescription: "Olá, {0}! Que bom te ver por aqui. Meu nome é Orbit.\n\nEu existo para ajudar comunidades a se conectarem de um jeito fácil e divertido. Eu transformo canais comuns em portais de conversa entre diferentes servidores, promovendo novas amizades e muito mais engajamento.\n\nMinha programação é o resultado do esforço de uma equipe fantástica que adora ver pessoas e comunidades crescendo juntas. Vamos conectar?"
+
+      fieldCommands: "📚 Lista de Comandos"
+      fieldLinkCommand: "Comandos"
+
+      fieldSupport: "❔ Está com dúvidas? Pergunte no meu Servidor de Suporte!"
+      fieldLinkSupport: "Suporte"
+
+      fieldDashboard: "⚙️ Meu Dashboard: O lugar para me adicionar e configurar seu servidor!"
+
+    link:
+      inviteMe: "Me adicione"
+      dashboard: "Site Oficial"
+      support: "Suporte"

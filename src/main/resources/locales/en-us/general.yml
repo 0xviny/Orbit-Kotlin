@@ -1,0 +1,26 @@
+commands:
+  command:
+    orbit:
+      description: "Orbit related commands!"
+      ping:
+        description: "[Common] Check bot latency with the Discord API!"
+      help:
+        name: "help"
+        description: "[Common] See my command list and some useful links about me!"
+
+    help:
+      embedTitle: "Help Panel!"
+      embedDescription: "Hello, {0}! Nice to see you here. My name is Orbit.\n\nI exist to help communities connect in an easy and fun way. I turn regular channels into conversation portals between different servers, promoting new friendships and much more engagement.\n\nMy programming is the result of the effort of a fantastic team that loves to see people and communities growing together. Shall we connect?"
+
+      fieldCommands: "📚 Command List"
+      fieldLinkCommand: "Commands"
+
+      fieldSupport: "❔ Got questions? Ask in my Support Server!"
+      fieldLinkSupport: "Support"
+
+      fieldDashboard: "⚙️ My Dashboard: The place to add and configure your server!"
+
+    link:
+      inviteMe: "Invite Me"
+      dashboard: "Official Website"
+      support: "Support"

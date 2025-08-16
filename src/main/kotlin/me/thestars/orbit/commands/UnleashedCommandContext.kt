@@ -5,11 +5,24 @@ import dev.minn.jda.ktx.coroutines.await
 import dev.minn.jda.ktx.messages.InlineMessage
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import dev.minn.jda.ktx.messages.MessageCreateBuilder
+import me.thestars.orbit.utils.locales.OrbitLocale
 import net.dv8tion.jda.api.entities.Message
+import net.dv8tion.jda.api.interactions.DiscordLocale
 
 class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: OrbitInstance) {
     val jda = event.jda
     val instance = client
+
+    private val parsedLocale = hashMapOf(
+        DiscordLocale.PORTUGUESE_BRAZILIAN to "pt-br",
+        DiscordLocale.ENGLISH_US to "en-us"
+    )
+
+    val locale = if (event.isFromGuild) {
+        OrbitLocale(parsedLocale[event.guildLocale] ?: parsedLocale[event.userLocale] ?: "pt-br")
+    } else {
+        OrbitLocale(parsedLocale[event.userLocale] ?: "pt-br")
+    }
 
     suspend fun reply(ephemeral: Boolean = false, block: InlineMessage<*>.() -> Unit): Message {
         val msg = MessageCreateBuilder {
@@ -29,7 +42,7 @@ class UnleashedCommandContext(val event: SlashCommandInteractionEvent, client: O
         event.deferReply(ephemeral).await()
     }
 
-    suspend fun makeReply(emoteId: String, content: String): String {
-        return "<emoji:$emoteId> **-** $content"
+    fun makeReply(emoteId: String, content: String): String {
+        return "$emoteId **|** $content"
     }
 }
