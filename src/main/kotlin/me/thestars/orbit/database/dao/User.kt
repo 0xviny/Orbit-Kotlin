@@ -142,7 +142,7 @@ class EconomyEntity(id: EntityID<UUID>) : UUIDEntity(id) {
 class Box(id: EntityID<UUID>) : UUIDEntity(id) {
     companion object : UUIDEntityClass<Box>(Boxes)
 
-    var user by Economy referencedOn Boxes.user
+    var user by EconomyEntity referencedOn Boxes.user
     var type by Boxes.type
     var quantity by Boxes.quantity
     var createdAt by Boxes.createdAt

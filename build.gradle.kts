@@ -1,9 +1,10 @@
 plugins {
     kotlin("jvm") version "2.2.0"
+    application
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
-group = "org.example"
-version = "1.0-SNAPSHOT"
+group = "me.thestars.orbit"
 
 repositories {
     mavenCentral()
@@ -26,6 +27,16 @@ dependencies {
     implementation("org.jetbrains.exposed:exposed-dao:0.61.0")
     implementation("org.jetbrains.exposed:exposed-jdbc:0.61.0")
     implementation("org.postgresql:postgresql:42.7.7")
+}
+
+application {
+    mainClass.set("me.thestars.orbit.OrbitLauncher")
+}
+
+tasks.jar {
+    manifest {
+        attributes["Main-Class"] = "me.thestars.orbit.OrbitLauncher"
+    }
 }
 
 tasks.test {
