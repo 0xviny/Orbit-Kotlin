@@ -17,7 +17,7 @@ class ConnectionJoinExecutor : OrbitSlashCommandExecutor() {
         val connectionName = context.event.getOption("connection")!!.asString
         val targetChannel = context.event.getOption("connection_channel")!!.asChannel
 
-        if (!context.event.interaction.isFromGuild) {
+        if (!context.event.isFromGuild) {
             context.reply(ephemeral = true) {
                 content = context.makeReply(
                     "❌",
@@ -29,7 +29,10 @@ class ConnectionJoinExecutor : OrbitSlashCommandExecutor() {
             return
         }
 
-        val userMemberPermissions = context.event.member!!.hasPermission(Permission.ADMINISTRATOR) || context.event.member!!.hasPermission(Permission.MANAGE_GUILD_EXPRESSIONS)
+        val userMemberPermissions =
+            context.event.member!!.hasPermission(Permission.ADMINISTRATOR) || context.event.member!!.hasPermission(
+                Permission.MANAGE_GUILD_EXPRESSIONS
+            )
         if (!userMemberPermissions) {
             context.reply(ephemeral = true) {
                 content = context.makeReply(
@@ -42,7 +45,7 @@ class ConnectionJoinExecutor : OrbitSlashCommandExecutor() {
         }
 
         val guildData = Guild.createOrGet(context.event.guild!!.idLong)
-        val connectionInChannel = OrbitConnection.findByName(connectionName, context.event.channelId!!) ?: null
+        val connectionInChannel = OrbitConnection.findByName(connectionName, context.event.channelId!!)
 
         if (connectionInChannel != null) {
             context.reply(ephemeral = true) {
@@ -55,8 +58,8 @@ class ConnectionJoinExecutor : OrbitSlashCommandExecutor() {
             return
         }
 
-        val totalConnectionInGuild = guildData?.orbitConnections?.toList()?.size ?: 0
-        val isPremium = guildData?.premium?.firstOrNull()?.expiresAt?.let { it > System.currentTimeMillis() } ?: false
+        val totalConnectionInGuild = guildData.orbitConnections.toList().size
+        val isPremium = guildData.premium.firstOrNull()!!.expiresAt.let { it > System.currentTimeMillis() }
         val limitConnectionsInGuild = if (isPremium) 15 else 5
 
         if (totalConnectionInGuild >= limitConnectionsInGuild) {

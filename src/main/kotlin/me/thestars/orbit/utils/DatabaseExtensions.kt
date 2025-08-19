@@ -47,7 +47,16 @@ import kotlin.random.Random
 
 suspend fun OrbitConnection.Companion.findByName(name: String, channelId: String): OrbitConnection? {
     return newSuspendedTransaction {
-        OrbitConnection.find { (OrbitConnections.name eq name) and (OrbitConnections.channelId eq channelId) }.firstOrNull()
+        OrbitConnection.find { (OrbitConnections.name eq name) and (OrbitConnections.channelId eq channelId) }
+            .firstOrNull()
+    }
+}
+
+suspend fun OrbitConnection.Companion.findConnectionsByChannel(channelId: String): List<OrbitConnection> {
+    return newSuspendedTransaction {
+        OrbitConnection.find {
+            OrbitConnections.channelId eq channelId
+        }.toList()
     }
 }
 

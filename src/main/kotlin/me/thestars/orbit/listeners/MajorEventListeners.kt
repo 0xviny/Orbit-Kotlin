@@ -69,6 +69,16 @@ class MajorEventListeners(private val instance: OrbitInstance) : ListenerAdapter
 
             event.replyChoices(choices).queue()
         }
+
+        if (event.name == "connection" && event.subcommandName == "information" && event.focusedOption.name == "connection") {
+            val matches = OrbitConnection.find {
+                OrbitConnections.channelId eq event.channelId!!
+            }.limit(25).map { it.name }
+
+            val choices = matches.map { Command.Choice(it, it) }
+
+            event.replyChoices(choices).queue()
+        }
     }
 
     override fun onReady(event: ReadyEvent) {

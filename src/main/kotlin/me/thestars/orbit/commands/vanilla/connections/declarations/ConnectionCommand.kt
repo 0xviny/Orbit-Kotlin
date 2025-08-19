@@ -1,6 +1,8 @@
 package me.thestars.orbit.commands.vanilla.connections.declarations
 
 import me.thestars.orbit.commands.structure.OrbitSlashCommandDeclarationWrapper
+import me.thestars.orbit.commands.vanilla.connections.ConnectionCreateExecutor
+import me.thestars.orbit.commands.vanilla.connections.ConnectionInformationExecutor
 import me.thestars.orbit.commands.vanilla.connections.ConnectionJoinExecutor
 import net.dv8tion.jda.api.entities.channel.ChannelType
 import net.dv8tion.jda.api.interactions.commands.OptionType
@@ -21,19 +23,54 @@ class ConnectionCommand : OrbitSlashCommandDeclarationWrapper {
             baseName = this@command.name
         ) {
             addOption(
-                OptionData(OptionType.STRING, "connection", "connection.join.options.name.description").setRequired(true).setAutoComplete(true),
+                OptionData(
+                    OptionType.STRING,
+                    "connection",
+                    "connection.join.options.name.description"
+                ).setRequired(true).setAutoComplete(true),
                 isSubCommand = true,
                 baseName = this.baseName
             )
 
             addOption(
-                OptionData(OptionType.CHANNEL, "connection_channel", "connection.join.options.channel.description").setRequired(true).setChannelTypes(
-                    ChannelType.TEXT),
+                OptionData(
+                    OptionType.CHANNEL,
+                    "connection_channel",
+                    "connection.join.options.channel.description"
+                ).setRequired(true).setChannelTypes(
+                    ChannelType.TEXT
+                ),
                 isSubCommand = true,
                 baseName = this.baseName
             )
 
             executor = ConnectionJoinExecutor()
+        }
+
+        subCommand(
+            "create",
+            "connection.create.description",
+            baseName = this@command.name
+        ) {
+            executor = ConnectionCreateExecutor()
+        }
+
+        subCommand(
+            "information",
+            "connection.info.description",
+            baseName = this@command.name
+        ) {
+            addOption(
+                OptionData(
+                    OptionType.STRING,
+                    "connection",
+                    "connection.info.options.connection.description"
+                ).setRequired(true).setAutoComplete(true),
+                isSubCommand = true,
+                baseName = this.baseName
+            )
+
+            executor = ConnectionInformationExecutor()
         }
     }
 }

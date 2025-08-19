@@ -15,6 +15,13 @@ commands:
             description: "Selecione a conexão que deseja entrar ou coloque o nome dela."
           connection_channel:
             description: "Coloque o canal para fazer a conexão no servidor."
+      create:
+        description: "[Conexão] Crie uma nova conexão para o servidor!"
+      info:
+        description: "[Conexão] Veja informações de alguma conexão do canal."
+        options:
+          connection:
+            description: "Selecione a conexão que deseja ver as informações."
 
     help:
       embedTitle: "Painel de Ajuda!"
@@ -34,9 +41,12 @@ commands:
         errorNotPermission: "{0}, você não tem as permissões de `ADMINISTRADOR` e `GERENCIAR_EXPRESSÔES` para poder continuar este comando.\n -# Você pode pedir para adicionarem está função ao seu cargo, assim conseguirá me configurar sem problemas!"
         errorConnectionAsExist: "{0}, a conexão `{1}` já existe no canal, por favor, tente outra conexão!\n-# Não sabe qual conexão escolher? dê uma passada no meu website: https://orbitbot.website/connections/explore lá você poderá achar a conexão perfeita!"
         errorLimitConnectionInGuild: "{0}, infelizmente seu servidor bateu o limite de **{1} conexões**, com isso não poderei fazer a conexão."
+        errorChannelIsEmpty: "{0}, o canal atual não possui nenhuma conexão disponível."
         errorConnectionNotExists: "{0}, a conexão `{1}` não existe, tente procurar outra conexão para adicionar ao canal."
       success:
         successConnected: "{0}, a conexão `{1}` foi conectada com sucesso ao servidor no canal: {2}!"
+      create: "{0}, para criar uma conexão é preciso ir ao meu website!\n\n> https://orbitbot.website/dashboard/guild?id={1}"
+
     link:
       inviteMe: "Me adicione"
       dashboard: "Site Oficial"

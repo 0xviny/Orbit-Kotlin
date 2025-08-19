@@ -15,6 +15,13 @@ commands:
             description: "Select the connection you want to join or enter its name."
           connection_channel:
             description: "Place the channel to make the connection to the server."
+      create:
+        description: "[Connection] Create a new connection to the server!"
+      info:
+        description: "[Connection] View information about any channel connection."
+        options:
+          connection:
+            description: "Select the connection you want to view information about."
 
     help:
       embedTitle: "Help Panel!"
@@ -35,8 +42,10 @@ commands:
         errorConnectionAsExist: "{0}, connection `{1}` already exists on the channel, please try another connection!\n-# Don't know which connection to choose? Take a look at my website: https://orbitbot.website/connections/explore there you can find the perfect connection!"
         errorLimitConnectionsInGuild: "{0}, unfortunately your server has reached the limit of **{1} connections**, so I will not be able to make the connection."
         errorConnectionNotExists: "{0}, connection `{1}` does not exist, try looking for another connection to add to the channel."
+        errorChannelIsEmpty: "{0}, the current channel has no available connections."
       success:
         successConnected: "{0}, connection `{1}` has been successfully connected to the server on channel: {2}!"
+      create: "{0}, to create a connection you need to go to my website!\n\n> https://orbitbot.website/dashboard/guild?id={1}"
 
     link:
       inviteMe: "Invite Me"
