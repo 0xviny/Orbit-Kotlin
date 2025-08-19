@@ -7,12 +7,13 @@ commands:
       help:
         description: "[Comum] Veja minha lista de comandos e alguns links úteis sobre mim!"
     connection:
+      description: "Comandos relacionado as conexões!"
       join:
-        description: "Comandos relacionado as conexões!"
+        description: "[Conexão] Adicione uma conexão pública em um canal do seu servidor."
         options:
-          name:
+          connection:
             description: "Selecione a conexão que deseja entrar ou coloque o nome dela."
-          channel:
+          connection_channel:
             description: "Coloque o canal para fazer a conexão no servidor."
 
     help:

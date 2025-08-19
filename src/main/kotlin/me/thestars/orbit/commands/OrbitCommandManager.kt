@@ -3,6 +3,7 @@ package me.thestars.orbit.commands
 import OrbitInstance
 import dev.minn.jda.ktx.coroutines.await
 import me.thestars.orbit.commands.structure.OrbitSlashCommandDeclarationWrapper
+import me.thestars.orbit.commands.vanilla.connections.declarations.ConnectionCommand
 import me.thestars.orbit.commands.vanilla.utils.declarations.OrbitCommand
 import net.dv8tion.jda.api.interactions.commands.Command
 
@@ -38,5 +39,6 @@ class OrbitCommandManager(val instance: OrbitInstance) {
 
     init {
         register(OrbitCommand())
+        register(ConnectionCommand())
     }
 }

@@ -8,11 +8,13 @@ commands:
         description: "[Common] See my command list and some useful links about me!"
     connection:
       description: "Connection related commands!"
-      options:
-        name:
-          descriptions: "Select the connection you want to join or enter its name."
-        channel:
-          description: "Place the channel to make the connection to the server."
+      join:
+        description: "[Connection] Add a public connection to a channel on your server."
+        options:
+          connection:
+            description: "Select the connection you want to join or enter its name."
+          connection_channel:
+            description: "Place the channel to make the connection to the server."
 
     help:
       embedTitle: "Help Panel!"

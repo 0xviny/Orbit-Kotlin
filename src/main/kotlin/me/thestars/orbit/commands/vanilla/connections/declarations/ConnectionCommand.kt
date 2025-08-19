@@ -21,13 +21,13 @@ class ConnectionCommand : OrbitSlashCommandDeclarationWrapper {
             baseName = this@command.name
         ) {
             addOption(
-                OptionData(OptionType.STRING, "connection", "connection.options.name.description").setRequired(true).setAutoComplete(true),
+                OptionData(OptionType.STRING, "connection", "connection.join.options.name.description").setRequired(true).setAutoComplete(true),
                 isSubCommand = true,
                 baseName = this.baseName
             )
 
             addOption(
-                OptionData(OptionType.CHANNEL, "connection_channel", "connection.options.channel.description").setRequired(true).setChannelTypes(
+                OptionData(OptionType.CHANNEL, "connection_channel", "connection.join.options.channel.description").setRequired(true).setChannelTypes(
                     ChannelType.TEXT),
                 isSubCommand = true,
                 baseName = this.baseName
