@@ -1,8 +1,9 @@
 package me.thestars.orbit.database.table
 
+import org.jetbrains.exposed.dao.id.LongIdTable
 import org.jetbrains.exposed.dao.id.UUIDTable
 
-object Guilds : UUIDTable("guilds") {
+object Guilds : LongIdTable("guilds") {
     val prefix = varchar("prefix", 10).default("!")
     val cases = text("cases").nullable()
     val language = varchar("language", 10).default("pt-BR")

@@ -6,14 +6,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 import me.thestars.orbit.commands.UnleashedCommandContext
+import me.thestars.orbit.database.dao.OrbitConnection
+import me.thestars.orbit.database.table.OrbitConnections
 import net.dv8tion.jda.api.OnlineStatus
 import net.dv8tion.jda.api.entities.Activity
 import net.dv8tion.jda.api.events.interaction.GenericInteractionCreateEvent
+import net.dv8tion.jda.api.events.interaction.command.CommandAutoCompleteInteractionEvent
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent
 import net.dv8tion.jda.api.events.session.ReadyEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
+import net.dv8tion.jda.api.interactions.commands.Command
 import net.dv8tion.jda.api.interactions.commands.SlashCommandInteraction
 import okhttp3.Dispatcher
+import org.jetbrains.exposed.sql.and
 
 class MajorEventListeners(private val instance: OrbitInstance) : ListenerAdapter() {
     private val coroutineScope = CoroutineScope(Dispatchers.Default + SupervisorJob())
@@ -49,6 +54,20 @@ class MajorEventListeners(private val instance: OrbitInstance) : ListenerAdapter
                     }
                 }
             }
+        }
+    }
+
+    override fun onCommandAutoCompleteInteraction(event: CommandAutoCompleteInteractionEvent) {
+        if (event.name == "connection" && event.subcommandName == "join" && event.focusedOption.name == "connection") {
+            val input = event.focusedOption.value
+
+            val matches = OrbitConnection.find {
+                OrbitConnections.type eq 3 and (OrbitConnections.name like "$input%")
+            }.limit(25).map { it.name }
+
+            val choices = matches.map { Command.Choice(it, it) }
+
+            event.replyChoices(choices).queue()
         }
     }
 

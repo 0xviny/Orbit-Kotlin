@@ -45,7 +45,13 @@ import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransacti
 import java.util.UUID
 import kotlin.random.Random
 
-suspend fun OrbitConnection.Companion.findByName(name: String): OrbitConnection? {
+suspend fun OrbitConnection.Companion.findByName(name: String, channelId: String): OrbitConnection? {
+    return newSuspendedTransaction {
+        OrbitConnection.find { (OrbitConnections.name eq name) and (OrbitConnections.channelId eq channelId) }.firstOrNull()
+    }
+}
+
+suspend fun OrbitConnection.Companion.existsConnection(name: String): OrbitConnection? {
     return newSuspendedTransaction {
         OrbitConnection.find { OrbitConnections.name eq name }.firstOrNull()
     }
@@ -57,15 +63,16 @@ suspend fun OrbitConnection.Companion.findByIdOrNull(id: UUID): OrbitConnection?
     }
 }
 
-suspend fun OrbitConnection.create(
+suspend fun OrbitConnection.Companion.create(
     name: String,
     guild: Guild,
-    creatorId: UUID,
+    creatorId: String,
     description: String? = null,
     invite: String? = null,
     channelId: String? = null,
     logsChannelId: String? = null,
     type: Int? = null,
+    flags: Int? = null,
     language: String? = null,
     messageComponentType: Int? = null,
     componentBackground: String? = null
@@ -286,9 +293,10 @@ suspend fun Guild.getConnections(): List<OrbitConnection> {
     }
 }
 
-suspend fun Guild.Companion.findByIdOrNull(id: UUID): Guild? {
+suspend fun Guild.Companion.createOrGet(guildId: Long): Guild {
     return newSuspendedTransaction {
-        Guild.findById(id)
+        Guild.findById(guildId) ?: Guild.new(guildId) {
+        }
     }
 }
 
@@ -297,6 +305,24 @@ suspend fun Guild.getPremium(): Premium? {
     return newSuspendedTransaction {
         self.premium.firstOrNull()
     }
+}
+
+suspend fun Guild.Companion.createOrbitConnection(
+    name: String,
+    creatorId: String,
+    channelId: String,
+    type: Int,
+    flags: Int,
+    guild: Guild
+): OrbitConnection {
+    return OrbitConnection.create(
+        name = name,
+        guild = guild,
+        creatorId = creatorId,
+        channelId = channelId,
+        flags = flags,
+        type = type
+    )
 }
 
 suspend fun UserGuildSetting.Companion.findFor(userId: UUID, guildId: UUID): UserGuildSetting? {

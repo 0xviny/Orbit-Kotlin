@@ -5,13 +5,15 @@ import me.thestars.orbit.database.table.Guilds
 import me.thestars.orbit.database.table.OrbitConnections
 import me.thestars.orbit.database.table.Premiums
 import me.thestars.orbit.database.table.UserGuildSettings
+import org.jetbrains.exposed.dao.LongEntity
+import org.jetbrains.exposed.dao.LongEntityClass
 import org.jetbrains.exposed.dao.UUIDEntity
 import org.jetbrains.exposed.dao.UUIDEntityClass
 import org.jetbrains.exposed.dao.id.EntityID
 import java.util.UUID
 
-class Guild(id: EntityID<UUID>) : UUIDEntity(id) {
-    companion object : UUIDEntityClass<Guild>(Guilds)
+class Guild(id: EntityID<Long>) : LongEntity(id) {
+    companion object : LongEntityClass<Guild>(Guilds)
 
     var prefix by Guilds.prefix
     var cases by Guilds.cases

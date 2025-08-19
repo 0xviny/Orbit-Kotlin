@@ -11,7 +11,7 @@ object OrbitConnections : UUIDTable("orbit_connections") {
     val invite = varchar("invite", 255).nullable()
     val pauseAt = long("pause_at").nullable()
     val lockedAt = long("locked_at").nullable()
-    val creatorId = uuid("creator_id")
+    val creatorId = varchar("creator_id", 30)
     val createdAt = long("created_at").clientDefault { System.currentTimeMillis() }
     val type = integer("type").nullable()
     val channelId = varchar("channel_id", 50)
