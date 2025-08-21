@@ -72,6 +72,14 @@ suspend fun OrbitConnection.Companion.findByIdOrNull(id: UUID): OrbitConnection?
     }
 }
 
+suspend fun OrbitConnection.Companion.countConnectionsByName(name: String) {
+    return newSuspendedTransaction {
+        OrbitConnection.find {
+            OrbitConnections.name eq name
+        }.count()
+    }
+}
+
 suspend fun OrbitConnection.Companion.create(
     name: String,
     guild: Guild,

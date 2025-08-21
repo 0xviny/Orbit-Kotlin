@@ -43,6 +43,8 @@ commands:
         errorLimitConnectionInGuild: "{0}, infelizmente seu servidor bateu o limite de **{1} conexões**, com isso não poderei fazer a conexão."
         errorChannelIsEmpty: "{0}, o canal atual não possui nenhuma conexão disponível."
         errorConnectionNotExists: "{0}, a conexão `{1}` não existe, tente procurar outra conexão para adicionar ao canal."
+        errorMoreOfOneConnectionChannel: "{0}, existe mais de uma conexão neste canal, escolha uma para ver as informações."
+        errorConnectionNotFound: "{0}, a conexão `{1}` não foi encontrada, por favor procure por outra conexão."
       success:
         successConnected: "{0}, a conexão `{1}` foi conectada com sucesso ao servidor no canal: {2}!"
       create: "{0}, para criar uma conexão é preciso ir ao meu website!\n\n> https://orbitbot.website/dashboard/guild?id={1}"

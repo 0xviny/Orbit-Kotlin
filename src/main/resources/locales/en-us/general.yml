@@ -43,6 +43,8 @@ commands:
         errorLimitConnectionsInGuild: "{0}, unfortunately your server has reached the limit of **{1} connections**, so I will not be able to make the connection."
         errorConnectionNotExists: "{0}, connection `{1}` does not exist, try looking for another connection to add to the channel."
         errorChannelIsEmpty: "{0}, the current channel has no available connections."
+        errorMoreOfOneConnectionChannel: "{0}, there is more than one connection on this channel, choose one to see the information."
+        errorConnectionNotFound: "{0}, connection `{1}` was not found, please search for another connection."
       success:
         successConnected: "{0}, connection `{1}` has been successfully connected to the server on channel: {2}!"
       create: "{0}, to create a connection you need to go to my website!\n\n> https://orbitbot.website/dashboard/guild?id={1}"
